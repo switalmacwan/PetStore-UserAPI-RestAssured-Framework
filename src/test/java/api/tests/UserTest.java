@@ -21,6 +21,8 @@ public class UserTest {
 	@BeforeClass
 	public void setupData()
 	{
+		//faker class is used to generate random data for testing purposes. It provides various methods to 
+		//generate realistic data such as names, addresses, phone numbers, etc.
 		faker = new Faker();
 		userPayload = new User();
 		
