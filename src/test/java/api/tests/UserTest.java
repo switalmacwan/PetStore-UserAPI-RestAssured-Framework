@@ -1,5 +1,8 @@
 package api.tests;
 
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
+import org.testng.AssertJUnit;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -35,7 +38,7 @@ public class UserTest {
 		{
 			Response response = User_Endpoints.createUser(userPayload);
 			response.then().log().all();
-			Assert.assertEquals(response.getStatusCode(), 200);
+			AssertJUnit.assertEquals(response.getStatusCode(), 200);
 		}
 		
 		@Test(priority = 2)
@@ -43,7 +46,7 @@ public class UserTest {
 		{
 			Response response = User_Endpoints.readUser(this.userPayload.getUsername());
 			response.then().log().all();
-			Assert.assertEquals(response.getStatusCode(), 200);
+			AssertJUnit.assertEquals(response.getStatusCode(), 200);
 		}
 		
 		@Test(priority = 3)
@@ -55,11 +58,11 @@ public class UserTest {
 			
 			Response response = User_Endpoints.updateUser(this.userPayload.getUsername(), userPayload);
 			response.then().log().body();
-			Assert.assertEquals(response.getStatusCode(), 200);
+			AssertJUnit.assertEquals(response.getStatusCode(), 200);
 			
 			Response responseAfterUpdate = User_Endpoints.readUser(this.userPayload.getUsername());
 			responseAfterUpdate.then().log().all();
-			Assert.assertEquals(responseAfterUpdate.getStatusCode(), 200);
+			AssertJUnit.assertEquals(responseAfterUpdate.getStatusCode(), 200);
 		}
 		
 		@Test(priority = 4)
@@ -67,11 +70,11 @@ public class UserTest {
 		{
 			Response response = User_Endpoints.deleteUser(this.userPayload.getUsername());
 			response.then().log().all();
-			Assert.assertEquals(response.getStatusCode(), 200);
+			AssertJUnit.assertEquals(response.getStatusCode(), 200);
 			
 			Response responseAfterDelete = User_Endpoints.readUser(this.userPayload.getUsername());
 			responseAfterDelete.then().log().all();
-			Assert.assertEquals(responseAfterDelete.getStatusCode(), 404);
+			AssertJUnit.assertEquals(responseAfterDelete.getStatusCode(), 404);
 		}
 		
 		
